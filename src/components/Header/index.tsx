@@ -14,10 +14,11 @@ export function Header() {
       align="center"
       justifyContent="space-between"
       position="fixed"
+      zIndex={4}
     >
       <Logotipo height="64" width="48"/>
 
-      <Icon as={AiOutlineMenu} w="5" h="6"/>
+      <Icon as={AiOutlineMenu} w="6" h="7" color="orange"/>
     </Flex>
   );
 }
