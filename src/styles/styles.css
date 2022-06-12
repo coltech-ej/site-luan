@@ -1,8 +1,8 @@
 :root {
   --swiper-theme-color: #F27F02;
   --swiper-pagination-bullet-inactive-color: #FFFFFF;
-  --swiper-pagination-bullet-inactive-opacity: 1;
-  --swiper-pagination-bullet-size: 4px;
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+  --swiper-pagination-bullet-size: 8px;
 }
 
 html,
@@ -41,9 +41,4 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.swiper-pagination-bullet-active {
-  height: 12px;
-  width: 12px;
 }

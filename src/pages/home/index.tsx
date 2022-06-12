@@ -1,5 +1,21 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
-import { Header } from "../../components/Header";
+import { 
+  Box, 
+  Flex, 
+  Heading, 
+  useDisclosure,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Input,
+  Button,
+  Text,
+  Divider,
+} from "@chakra-ui/react";
+import Header from "../../components/Header";
 
 import { Mousewheel, Pagination } from "swiper";
 
@@ -7,8 +23,13 @@ import { Swiper, SwiperSlide, } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { useRef } from "react";
+import { NavLink } from "../../components/NavLink";
 
 export function Home() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef = useRef<HTMLButtonElement>(null)
+
   return (
     <Flex 
       w="100vw" 
@@ -16,7 +37,7 @@ export function Home() {
       direction="column" 
       align="center"
     >
-      <Header />
+      <Header ref={btnRef} onOpen={onOpen}/>
 
       <Swiper
         slidesPerView={1}
@@ -90,6 +111,28 @@ export function Home() {
           </Flex>
         </SwiperSlide>
       </Swiper>
+
+
+      <Drawer
+        isOpen={isOpen}
+        placement='right'
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        size="xs"
+      >
+        <DrawerOverlay />
+        <DrawerContent bgColor="gray.700">
+          <DrawerCloseButton color="orange"/>
+          <DrawerBody
+            mt="12"
+          >
+            <NavLink href="/projects">Projetos</NavLink>
+            <NavLink href="/services">Serviços</NavLink>
+            <NavLink href="/contacts">Contatos</NavLink>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
     </Flex>
   );
 }

@@ -1,8 +1,17 @@
-import { Flex, Icon } from "@chakra-ui/react";
+import { Button, Flex, Icon } from "@chakra-ui/react";
+import { ForwardRefComponent } from "framer-motion";
+import { ForwardedRef, forwardRef, ForwardRefRenderFunction, Ref, RefAttributes } from "react";
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Logotipo } from '../Icons';
 
-export function Header() {
+interface HeaderProps {
+  onOpen(): void;
+}
+
+const Header: ForwardRefRenderFunction<HTMLButtonElement, HeaderProps> = (
+    { onOpen }: HeaderProps, 
+    ref
+  ) => {
   return (
     <Flex
       as="header"
@@ -17,8 +26,16 @@ export function Header() {
       zIndex={4}
     >
       <Logotipo height="64" width="48"/>
+      <Button
+        ref={ref}
+        variant="unstyled"
+        onClick={onOpen}
+      >
+        <Icon as={AiOutlineMenu} w="6" h="7" color="orange"/>
+      </Button>
 
-      <Icon as={AiOutlineMenu} w="6" h="7" color="orange"/>
     </Flex>
   );
 }
+
+export default forwardRef(Header);
