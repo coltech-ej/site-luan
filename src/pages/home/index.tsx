@@ -14,7 +14,12 @@ import {
   Button,
   Text,
   Divider,
+  Icon,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
+import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
+
 import Header from "../../components/Header";
 
 import { Mousewheel, Pagination } from "swiper";
@@ -126,9 +131,44 @@ export function Home() {
           <DrawerBody
             mt="12"
           >
-            <NavLink href="/projects">Projetos</NavLink>
-            <NavLink href="/services">Serviços</NavLink>
-            <NavLink href="/contacts">Contatos</NavLink>
+            <NavLink to="/projects">Projetos</NavLink>
+            <NavLink to="/services">Serviços</NavLink>
+            <NavLink to="/contacts" final>Contatos</NavLink>
+
+            <Grid
+              w="100%"
+              templateColumns="repeat(3, 1fr)"
+              gap="3"
+              mx="auto"
+              py="4"
+              px="20"
+              alignItems="center"
+            >
+              <GridItem>
+                <Flex
+                  align="center"
+                  justify="center"
+                >
+                  <Icon as={FaFacebook}/>
+                </Flex>
+              </GridItem>
+              <GridItem>
+                <Flex
+                  align="center"
+                  justify="center"
+                >
+                  <Icon as={FaInstagram}/>
+                </Flex>
+              </GridItem>
+              <GridItem>
+                <Flex
+                  align="center"
+                  justify="center"
+                >
+                  <Icon as={FaYoutube}/>
+                </Flex>
+              </GridItem>
+            </Grid>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
