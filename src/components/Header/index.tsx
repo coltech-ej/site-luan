@@ -1,17 +1,10 @@
-import { Button, Flex, Icon } from "@chakra-ui/react";
-import { ForwardRefComponent } from "framer-motion";
-import { ForwardedRef, forwardRef, ForwardRefRenderFunction, Ref, RefAttributes } from "react";
-import { AiOutlineMenu } from 'react-icons/ai';
+import { Flex, Grid, GridItem, Icon, Text } from "@chakra-ui/react";
+import { FaInstagram, FaFacebook, FaYoutube, FaLinkedin } from 'react-icons/fa';
+
 import { Logotipo } from '../Icons';
+import { NavLink } from "../NavLink";
 
-interface HeaderProps {
-  onOpen(): void;
-}
-
-const Header: ForwardRefRenderFunction<HTMLButtonElement, HeaderProps> = (
-    { onOpen }: HeaderProps, 
-    ref
-  ) => {
+export function Header() {
   return (
     <Flex
       as="header"
@@ -26,16 +19,71 @@ const Header: ForwardRefRenderFunction<HTMLButtonElement, HeaderProps> = (
       zIndex={4}
     >
       <Logotipo height="64" width="48"/>
-      <Button
-        ref={ref}
-        variant="unstyled"
-        onClick={onOpen}
-      >
-        <Icon as={AiOutlineMenu} w="6" h="7" color="orange"/>
-      </Button>
 
+      <Grid
+        gridTemplateColumns={"1fr 1fr 1fr 20px 20px 20px 20px"}
+        gap="4"
+      >
+        <GridItem>
+          <NavLink
+            to="/projects"
+          >
+            Projetos
+          </NavLink>
+        </GridItem>
+
+        <GridItem>
+          <NavLink
+            to="/services"
+          >
+            Serviços
+          </NavLink>
+        </GridItem>
+        
+        <GridItem>
+          <NavLink
+            to="/contact"
+          >
+            Contato
+          </NavLink>
+        </GridItem>
+
+        <GridItem>
+          <Flex 
+            w="100%"
+            py="2"
+          >
+            <Icon as={FaInstagram} size={20} alignSelf="center"/>
+          </Flex>
+        </GridItem>
+
+        <GridItem>
+          <Flex 
+            w="100%"
+            py="2"
+          >
+            <Icon as={FaFacebook} size={20}/>
+          </Flex>
+        </GridItem>
+
+        <GridItem>
+          <Flex 
+            w="100%"
+            py="2"
+          >
+            <Icon as={FaLinkedin} size={20}/>
+          </Flex>
+        </GridItem>
+
+        <GridItem>
+          <Flex 
+            w="100%"
+            py="2"
+          >
+            <Icon as={FaYoutube} size={20}/>
+          </Flex>
+        </GridItem>
+      </Grid>
     </Flex>
   );
 }
-
-export default forwardRef(Header);
