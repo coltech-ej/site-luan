@@ -17,6 +17,21 @@ import { ShowProject } from "../../components/ShowProject";
 
 import image from '../../../assets/Logo-Luan-Branco.png';
 
+const projects = [
+  {
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80", 
+    title: "Modern House"
+  }, 
+  {
+    img:"https://images.unsplash.com/photo-1485996463739-9cb09adbe6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    title:"Florest House"
+  },
+  {
+    img:"https://images.unsplash.com/photo-1522071500372-f0fd8c452178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+    title:"Winter House"
+  }
+]
+
 export function Home() {
   return (
     <Flex 
@@ -52,26 +67,16 @@ export function Home() {
           </Flex>
         </SwiperSlide>
         
-        <SwiperSlide>
-          <ShowProject 
-            img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            title="Modern House"
-          />
-        </SwiperSlide>
-        
-        <SwiperSlide>
-          <ShowProject 
-            img="https://images.unsplash.com/photo-1485996463739-9cb09adbe6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            title="Florest House"
-          />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <ShowProject 
-            img="https://images.unsplash.com/photo-1522071500372-f0fd8c452178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            title="Winter House"
-          />
-        </SwiperSlide>
+        {
+          projects.map(project => (
+            <SwiperSlide>
+              <ShowProject 
+                img={project.img}
+                title={project.title}
+              />
+            </SwiperSlide>
+          ))
+        }
 
         <SwiperSlide
           style={{
