@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { 
-  Flex, 
+  Flex, Image, 
 } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
@@ -14,6 +15,8 @@ import { NavLink } from "../../components/NavLink";
 import { Footer } from "../../components/Footer";
 import { ShowProject } from "../../components/ShowProject";
 
+import image from '../../../assets/Logo-Luan-Branco.png';
+
 export function Home() {
   return (
     <Flex 
@@ -25,7 +28,7 @@ export function Home() {
       <Header/>
 
       <Swiper
-        slidesPerView={1}
+        slidesPerView={"auto"}
         direction={"vertical"}
         pagination={{
           clickable: true,
@@ -34,6 +37,21 @@ export function Home() {
         modules={[Mousewheel, Pagination]}
         speed={1000}
       >
+        <SwiperSlide>
+          <Flex
+            w="100%"
+            h="100%"
+            p="8"
+          >
+            <Image 
+              src={image}
+              alt="Logo do Luan Hayden"
+              boxSize="sm"
+              objectFit="cover"
+            />
+          </Flex>
+        </SwiperSlide>
+        
         <SwiperSlide>
           <ShowProject 
             img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -53,6 +71,14 @@ export function Home() {
             img="https://images.unsplash.com/photo-1522071500372-f0fd8c452178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             title="Winter House"
           />
+        </SwiperSlide>
+
+        <SwiperSlide
+          style={{
+            height: "auto",
+          }}
+        >
+          <Footer /> 
         </SwiperSlide>
       </Swiper>
     </Flex>

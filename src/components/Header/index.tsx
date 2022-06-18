@@ -1,7 +1,6 @@
 import { Flex, Grid, GridItem, Icon, Text } from "@chakra-ui/react";
 import { FaInstagram, FaFacebook, FaYoutube, FaLinkedin } from 'react-icons/fa';
 
-import { Logotipo } from '../Icons';
 import { NavLink } from "../NavLink";
 
 export function Header() {
@@ -14,12 +13,10 @@ export function Header() {
       mx="auto"
       p="6"
       align="center"
-      justifyContent="space-between"
+      justifyContent="flex-end"
       position="fixed"
       zIndex={4}
     >
-      <Logotipo height="64" width="48"/>
-
       <Grid
         gridTemplateColumns={"1fr 1fr 1fr 20px 20px 20px 20px"}
         gap="4"

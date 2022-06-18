@@ -1,4 +1,6 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Heading, Icon, Image } from "@chakra-ui/react";
+
+import { Logotipo } from "../Icons";
 
 interface IShowProjectProps {
   img: string;
@@ -8,22 +10,40 @@ interface IShowProjectProps {
 export function ShowProject({img, title}: IShowProjectProps) {
   return (
     <Flex
+      direction="column"
       w="100%"
       h="100%"
       bgImage={img}
       bgSize="cover"
-      align="center"
-      padding="20"
+      px="20"
+      py="4"
     >
-      <Box 
-        w="36"
-        justifyContent=""
+      <Grid
+        templateRows="1fr 1fr"
+        w="100%"
+        h="100%"
       >
-        <Heading
-          textShadow='0.1em 0.1em 0.2em black' 
-          textAlign="start"
-        >{title}</Heading>
-      </Box>
+        <GridItem>
+          <Flex
+            w="100%"
+            h="100%"
+            align="start"
+          >
+            <Logotipo w="48" h="24" color="gray.900"/> 
+          </Flex>
+        </GridItem>
+
+        <GridItem>
+          <Box 
+            w="36"
+          >
+            <Heading
+              textShadow='0.1em 0.1em 0.2em black' 
+              textAlign="start"
+            >{title}</Heading>
+          </Box>
+        </GridItem>
+      </Grid>
     </Flex>
   );
 }
