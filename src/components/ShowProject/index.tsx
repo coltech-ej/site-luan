@@ -1,14 +1,24 @@
-import { Box, Flex, Grid, GridItem, Heading, Icon, Image, Text, Link } from "@chakra-ui/react";
-import { Link as RouterLink} from "react-router-dom";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Icon,
+  Image,
+  Text,
+  Link,
+} from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 import { Logotipo } from "../Icons";
 
 interface IShowProjectProps {
   img: string;
-  title: string; 
+  title: string;
 }
 
-export function ShowProject({img, title}: IShowProjectProps) {
+export function ShowProject({ img, title }: IShowProjectProps) {
   return (
     <Flex
       direction="column"
@@ -19,46 +29,30 @@ export function ShowProject({img, title}: IShowProjectProps) {
       px="20"
       py="4"
     >
-      <Grid
-        templateRows="1fr 1fr 1fr"
-        w="100%"
-        h="100%"
-      >
+      <Grid templateRows="1fr 1fr 1fr" w="100%" h="100%">
         <GridItem>
-          <Flex
-            w="100%"
-            h="100%"
-            align="start"
-          >
-            <Logotipo w="48" h="24" color="gray.900"/> 
-          </Flex>
+          <Flex w="100%" h="100%" align="start"></Flex>
         </GridItem>
 
         <GridItem>
-          <Flex
-            direction="column"
-            textAlign="start"
-          >
-            <Box 
-              w="36"
-            >
-              <Heading
-                textShadow='0.1em 0.1em 0.2em black' 
-                textAlign="start"
-              >{title}</Heading>
+          <Flex direction="column" textAlign="start">
+            <Box w="36">
+              <Heading textShadow="0.1em 0.1em 0.2em black" textAlign="start">
+                {title}
+              </Heading>
             </Box>
-            <Text
-              fontSize="lg"
-              textTransform="uppercase"
-              mt="4"
-            >Projeto Residencial</Text>
+            <Text fontSize="lg" textTransform="uppercase" mt="4">
+              Projeto Residencial
+            </Text>
 
-            <Link as={RouterLink} to="/portifolio-item"
+            <Link
+              as={RouterLink}
+              to="/portifolio-item"
               color="orange"
               mt="4"
               cursor="pointer"
               _hover={{
-                filter: "brightness(150%)"
+                filter: "brightness(150%)",
               }}
             >
               Visualizar projeto

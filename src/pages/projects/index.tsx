@@ -25,6 +25,7 @@ export function Projects() {
 
   return (
     <>
+      <Header bgColor="gray.700" position="static" logo={true} />
       <Flex
         bg="white"
         color="gray.700"
@@ -34,14 +35,14 @@ export function Projects() {
       >
         <Flex direction="column" minW="95%">
           <Center>
-            <Flex fontSize="4xl" direction="column">
+            <Flex fontSize="4xl" direction="column" color="gray.500">
               <Center>Projetos</Center>
-              <Center>
+              <Center margin="-5">
                 <Text fontWeight="bold">Arquitetônicos</Text>
               </Center>
             </Flex>
           </Center>
-          <Grid templateColumns="repeat(3, 1fr)" marginTop="5" gap="5">
+          <Grid templateColumns="repeat(3, 1fr)" marginTop="20" gap="5">
             {projects.map((project) => (
               <GridItem bgImage={project.url} bgSize="cover" w="100%" h="22em">
                 <Project name={project.name} location={project.location} />
