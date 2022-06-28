@@ -1,7 +1,3 @@
-import { useQuery } from "@apollo/client";
-
-import Projects from "../../querys";
-
 import { Flex, Image } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
@@ -16,7 +12,6 @@ import { Footer } from "../../components/Footer";
 import { ShowProject } from "../../components/ShowProject";
 
 import image from "../../../assets/Logo-Luan-Branco.png";
-import { Key } from "react";
 
 const projects = [
 	{
@@ -34,16 +29,6 @@ const projects = [
 ];
 
 export function Home() {
-	const { loading, error, data } = useQuery(Projects);
-
-	if (loading) {
-		return <p>Loading...</p>;
-	}
-
-	if (error) {
-		return <p>an error occurred...</p>;
-	}
-
 	return (
 		<Flex w="100vw" h="100vh" direction="column" align="center">
 			<Header />
@@ -68,14 +53,15 @@ export function Home() {
 						/>
 					</Flex>
 				</SwiperSlide>
-
-				{data.projects.data.map((project) => (
-					// eslint-disable-next-line react/jsx-key
-					<SwiperSlide>
-						<ShowProject key={project.id} img={project.attributes.banner} title={project.attributes.name} />
-					</SwiperSlide>
-				))}
-
+				{
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					projects.map((project: any) => (
+						// eslint-disable-next-line react/jsx-key
+						<SwiperSlide>
+							<ShowProject img={project.img} title={project.title} />
+						</SwiperSlide>
+					))
+				}
 				<SwiperSlide
 					style={{
 						height: "auto",

@@ -5,21 +5,21 @@ import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import { theme } from "./styles/theme";
 
-import { ApolloProvider } from "@apollo/client";
-import client from "./service";
+import client from "./api/service";
 
 import "swiper/css/bundle";
 import "./styles/styles.css";
+import { ApolloProvider } from "@apollo/client";
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<ChakraProvider theme={theme}>
-				<ApolloProvider client={client}>
+			<ApolloProvider client={client}>
+				<ChakraProvider theme={theme}>
 					<App />
-				</ApolloProvider>
-			</ChakraProvider>
+				</ChakraProvider>
+			</ApolloProvider>
 		</BrowserRouter>
 	</React.StrictMode>
 );
