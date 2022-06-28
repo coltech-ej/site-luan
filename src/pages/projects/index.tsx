@@ -22,6 +22,8 @@ export function Projects() {
 		},
 	];
 
+	
+
 	return (
 		<>
 			<Header bgColor="gray.700" position="static" logo={true} />
