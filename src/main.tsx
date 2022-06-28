@@ -5,6 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import { theme } from "./styles/theme";
 
+import { ApolloProvider } from "@apollo/client";
+import client from "./service";
+
 import "swiper/css/bundle";
 import "./styles/styles.css";
 
@@ -13,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<ChakraProvider theme={theme}>
-				<App />
+				<ApolloProvider client={client}>
+					<App />
+				</ApolloProvider>
 			</ChakraProvider>
 		</BrowserRouter>
 	</React.StrictMode>
