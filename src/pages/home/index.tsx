@@ -53,14 +53,15 @@ export function Home() {
 						/>
 					</Flex>
 				</SwiperSlide>
-
-				{projects.map((project) => (
-					// eslint-disable-next-line react/jsx-key
-					<SwiperSlide>
-						<ShowProject img={project.img} title={project.title} />
-					</SwiperSlide>
-				))}
-
+				{
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
+					projects.map((project: any) => (
+						// eslint-disable-next-line react/jsx-key
+						<SwiperSlide>
+							<ShowProject img={project.img} title={project.title} />
+						</SwiperSlide>
+					))
+				}
 				<SwiperSlide
 					style={{
 						height: "auto",
