@@ -20,8 +20,7 @@ export function Projects() {
 				id: project.id,
 				name: project.attributes.name,
 				location: project.attributes.basics.location,
-				url: "https://images.unsplash.com/photo-1522071500372-f0fd8c452178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-				// url: project.attributes.banner.data.attributes.formats.large.url,
+				url: project.attributes.banner.data.attributes.formats.thumbnail.url,
 			}));
 			setProjects(constructor);
 		}
