@@ -2,7 +2,7 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { GET_PROJECTS } from "../../api/querys";
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Projects() {
 	const [projects, setProjects] = useState([
@@ -15,20 +15,23 @@ export function Projects() {
 	]);
 	const { loading, error, data } = useQuery(GET_PROJECTS);
 
-	if (data) {
-		const projectsArray = data.projects.data;
-		console.log(projectsArray);
-		projectsArray.map((project: any) => {
-			const constructer = {
-				id: project.id,
-				name: project.attributes.name,
-				location: project.attributes.basics.location,
-				url: project.attributes.banner.data.attributes.formats.large.url,
-			};
-			setProjects([...projects, constructer]);
-		});
-		console.log(projects);
-	}
+	useEffect(() => {
+		if (data) {
+			const projectsArray = data.projects.data;
+			console.log(projectsArray);
+			projectsArray.map((project: any) => {
+				const constructer = {
+					id: project.id,
+					name: project.attributes.name,
+					location: project.attributes.basics.location,
+					url: project.attributes.banner.data.attributes.formats.large.url,
+				};
+				console.log(constructer);
+				setProjects([...projects, constructer]);
+			});
+			console.log(projects);
+		}
+	}, [data]);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error : {error.message}</p>;
