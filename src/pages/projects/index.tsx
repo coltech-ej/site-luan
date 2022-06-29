@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable unused-imports/no-unused-vars */
 import { GET_PROJECTS } from "../../api/querys";
 import { useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
@@ -16,19 +14,16 @@ export function Projects() {
 	useEffect(() => {
 		if (data) {
 			const projectsArray = data.projects.data;
+			console.log(projectsArray);
 			const constructor = projectsArray.map((project: any) => ({
 				id: project.id,
 				name: project.attributes.name,
-				location: project.attributes.basics.location,
-				url: project.attributes.banner.data.attributes.formats.thumbnail.url,
+				location: project.attributes.location,
+				url: project.attributes.image.data.attributes.formats.medium.url,
 			}));
 			setProjects(constructor);
 		}
 	}, [loading]);
-
-	useEffect(() => {
-		console.log(projects);
-	}, [projects]);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error : {error.message}</p>;

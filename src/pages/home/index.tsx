@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Flex, Image } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header";
@@ -12,23 +13,29 @@ import { Footer } from "../../components/Footer";
 import { ShowProject } from "../../components/ShowProject";
 
 import image from "../../../assets/Logo-Luan-Branco.png";
-
-const projects = [
-	{
-		img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-		title: "Modern House",
-	},
-	{
-		img: "https://images.unsplash.com/photo-1485996463739-9cb09adbe6c5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-		title: "Florest House",
-	},
-	{
-		img: "https://images.unsplash.com/photo-1522071500372-f0fd8c452178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-		title: "Winter House",
-	},
-];
+import { useEffect, useState } from "react";
+import { GET_HOME } from "../../api/querys";
+import { useQuery } from "@apollo/client";
 
 export function Home() {
+	const [mainProjects, setMainProjects] = useState([]);
+	const { loading, error, data } = useQuery(GET_HOME);
+
+	useEffect(() => {
+		if (data) {
+			const mainProjectsArray = data.homes.data;
+			const constructor = mainProjectsArray.map((project: any) => ({
+				id: project.id,
+				name: project.attributes.name,
+				url: project.attributes.banner.data.attributes.formats.large.url,
+			}));
+			setMainProjects(constructor);
+		}
+	}, [loading]);
+
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error : {error.message}</p>;
+
 	return (
 		<Flex w="100vw" h="100vh" direction="column" align="center">
 			<Header />
@@ -49,16 +56,20 @@ export function Home() {
 							src={image}
 							alt="Logo do Luan Hayden"
 							boxSize="sm"
-							objectFit="cover"
+							objectFit="contain"
 						/>
 					</Flex>
 				</SwiperSlide>
 				{
 					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					projects.map((project: any) => (
+					mainProjects.map((project: any) => (
 						// eslint-disable-next-line react/jsx-key
 						<SwiperSlide>
-							<ShowProject img={project.img} title={project.title} />
+							<ShowProject
+								key={project.id}
+								img={project.url}
+								title={project.name}
+							/>
 						</SwiperSlide>
 					))
 				}

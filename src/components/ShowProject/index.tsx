@@ -32,7 +32,7 @@ export function ShowProject({ img, title }: IShowProjectProps) {
 
 				<GridItem>
 					<Flex direction="column" textAlign="start">
-						<Box w="36">
+						<Box w="50">
 							<Heading textShadow="0.1em 0.1em 0.2em black" textAlign="start">
 								{title}
 							</Heading>
